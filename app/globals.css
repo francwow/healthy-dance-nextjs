@@ -21,19 +21,24 @@ html {
 }
 
 body {
-  min-height: 200vh;
+  position: relative;
+  overflow-x: hidden !important;
+  --header-height-px: calc(var(--header-height) * 1px);
   --font-body: var(--font-inter);
   --font-heading: var(--font-urbanist);
-  --color-light: rgb(248, 248, 245);
-  --color-dark: rgb(28, 28, 27);
-  --color-white: rgb(255, 255, 255);
-  --color-black: rgb(0, 0, 0);
-  --color-green: rgb(44, 64, 52);
-  --color-espresso: rgb(90, 64, 39);
-  --color-bluestone: rgb(76, 97, 124);
-  --color-pinkberry: rgb(174, 87, 129);
-  background-color: var(--color-green);
+  --color-light: #f8f8f5;
+  --color-dark: #1c1c1b;
+  --color-normalwhite: #ffffff;
+  --color-normalblack: #000000;
+  --color-junglegreen: #2c4034;
+  --color-espresso: #5a4027;
+  --color-bluestone: #4c617c;
+  --color-darkblue: #0f172a;
+  --color-pinkberry: #ae5781;
+  --color-pinklogo: #f47f81;
+  background-color: var(--color-light);
   font-family: var(--font-body);
+  color: var(--color-darkblue);
 }
 
 h1,
@@ -45,16 +50,15 @@ h6 {
   font-family: var(--font-heading);
 }
 
-img,
 picture,
-svg,
 video {
   display: block;
   max-width: 100%;
 }
 
 img {
-  max-width: 100%;
+  display: block;
+  width: 100%;
   height: auto;
 }
 
@@ -76,4 +80,350 @@ i.symbol {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   font-feature-settings: "liga";
+}
+
+.scroll-up-btn {
+  animation: fade-in 0.5s ease forwards;
+  opacity: 0;
+  box-shadow: 1px 3px 6px 3px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.scroll-up-btn .symbol {
+  font-size: 2rem;
+  font-weight: 400;
+  color: var(--color-light);
+}
+
+/* .inicio-reel {
+  display: none;
+} */
+
+/* <Logo /> */
+.logo {
+  width: 120px;
+}
+
+/* <MainBtn /> */
+.main-btn-container {
+  max-width: 250px;
+  border-radius: 100vw;
+  margin: auto;
+  box-shadow: 1px 2px 4px 1px rgba(0, 0, 0, 0.1);
+}
+
+.main-btn-container a {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0.7rem 1rem;
+  gap: 10px;
+  font-size: 1.1rem;
+}
+
+.main-btn-container .symbol {
+  font-weight: 200;
+  font-size: 2rem;
+  transition: 0.3s ease transform;
+}
+
+.main-btn-container:hover .symbol {
+  transform: translate3d(10%, 0, 0);
+}
+
+/* <Header /> */
+.header-container {
+  background-color: var(--color-light);
+  overflow-x: hidden;
+}
+
+.header-nav {
+  display: none;
+}
+
+/* <Burger /> */
+.burger {
+  position: relative;
+}
+
+.stick {
+  display: block;
+  width: 25px;
+  height: 2px;
+  transform: rotate(0);
+  transition: transform 0.3s ease;
+}
+
+.stick::after {
+  content: "";
+  display: block;
+  width: 25px;
+  height: 2px;
+  transform: rotate(0) translate3d(0, 10px, 0);
+  transition: transform 0.3s ease;
+}
+
+.stick.active {
+  transform: rotate(45deg);
+}
+
+.stick.active::after {
+  content: "";
+  transform: rotate(-90deg) translate3d(0, 0, 0);
+}
+
+/* <Nav /> */
+.nav-item {
+  padding: 0 1rem;
+}
+
+.nav-item a {
+  position: relative;
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding: 5px 0;
+}
+
+.nav-item a::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--color-darkblue);
+  transform: scale(0, 1);
+  transform-origin: right;
+  transition: 0.3s ease transform;
+}
+
+.nav-item:hover a::after {
+  transform: scale(1, 1);
+  transform-origin: left;
+}
+
+/* <MobileNav /> */
+.mobile-nav {
+  position: relative;
+  overflow-x: hidden;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  transform: translate3d(110%, 0, 0);
+  width: 100vw;
+  max-width: 600px;
+  height: calc(100vh - var(--header-height-px));
+  background-color: var(--color-light);
+  z-index: 999;
+  transition: 0.7s ease transform;
+}
+
+.mobile-nav.active {
+  transform: translate3d(0, 0, 0);
+}
+
+.mobile-nav .nav {
+  width: 100%;
+  height: 100%;
+}
+
+.mobile-nav .nav-items {
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.mobile-nav .nav-item {
+  width: 100%;
+}
+
+.mobile-nav .nav-item a {
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.3rem;
+}
+
+.mobile-nav .languages-container {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+/* <Languages /> */
+.languages {
+  position: relative;
+  font-weight: 600;
+}
+
+.languages:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50%;
+  height: 2px;
+  background-color: var(--color-darkblue);
+  transition: transform 0.3s ease;
+}
+
+.languages.en-active:after {
+  transform: translate3d(100%, 0, 0);
+}
+
+/* <MovingSocial /> */
+/* .moving-social {
+  display: none;
+} */
+
+.moving-social:hover .moving-social-items {
+  animation-play-state: paused;
+}
+
+.moving-social-item {
+  position: relative;
+  padding: 0 0.8rem;
+}
+
+.moving-social-items:first-child {
+}
+
+.moving-social-items {
+  width: fit-content;
+  flex-basis: 100%;
+  animation: moving-social 20s linear forwards infinite;
+}
+
+@keyframes moving-social {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+.moving-social-item svg {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+/* InicioReel */
+.inicio-reel {
+  position: relative;
+  height: 100vh;
+  overflow: hidden !important;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding: 6rem 1rem;
+}
+
+.video-container {
+  overflow: hidden !important;
+  position: absolute;
+  inset: 0;
+}
+
+.video-container video,
+.video-container iframe {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.inicio-reel-info {
+  position: relative;
+}
+
+.inicio-reel-info h1 {
+}
+
+/* <FeaturedProducts */
+.featured-item {
+  overflow: hidden;
+}
+
+.featured-img img {
+  transition: 0.3s ease transform;
+}
+
+.featured-item:hover img {
+  transform: scale(1.1);
+}
+
+.featured-item:hover h3 {
+  text-decoration: underline;
+}
+
+/* <AboutIntro /> */
+.about-intro-section {
+  background: url("/img/about-bg.webp");
+  background-color: var(--color-darkblue);
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  background-blend-mode: overlay;
+}
+
+/* DeskTop */
+@media screen and (min-width: 991px) {
+  /* general styles */
+  .scroll-up-btn .symbol {
+    font-size: 3rem;
+    font-weight: 600;
+  }
+
+  /* <Logo /> */
+  .logo {
+    width: 160px;
+  }
+
+  /* <MainBtn /> */
+  .main-btn-container {
+    max-width: 300px;
+  }
+
+  .main-btn-container a {
+    padding: 0.7rem 1rem;
+    gap: 10px;
+    font-size: 1.3rem;
+    font-weight: 400;
+  }
+
+  .main-btn-container .symbol {
+    font-weight: 300;
+    font-size: 2rem;
+  }
+
+  /* <Header /> */
+  .header-nav {
+    display: flex;
+  }
+
+  /* <MobileNav />*/
+  /* .mobile-nav {
+    display: none;
+  } */
+
+  /* InicioReel */
+  .inicio-reel {
+    padding: 6rem 3rem;
+  }
 }

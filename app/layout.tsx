@@ -4,6 +4,11 @@ import localFont from "next/font/local";
 import React from "react";
 import "./globals.css";
 import Header from "../components/Header";
+import Provider from "../components/Provider";
+import MobileNav from "../components/MobileNav";
+import Whatsapp from "../components/Whatsapp";
+import ScrollNav from "../components/ScrollNav";
+import Footer from "../components/Footer";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const urbanist = Urbanist({ subsets: ["latin"], variable: "--font-urbanist" });
@@ -32,12 +37,18 @@ export default function RootLayout({
 }>) {
   return (
     <html className={`${materialSymbols.variable}`} lang="en">
-      <body
-        className={`${inter.variable} ${urbanist.variable} ${montserrat.variable}`}
-      >
-        <Header />
-        {children}
-      </body>
+      <Provider>
+        <body
+          className={`${inter.variable} ${urbanist.variable} ${montserrat.variable}`}
+        >
+          <Header />
+          <MobileNav />
+          <Whatsapp />
+          <ScrollNav />
+          {children}
+          <Footer />
+        </body>
+      </Provider>
     </html>
   );
 }

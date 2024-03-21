@@ -1,7 +1,13 @@
+import AboutIntro from "../components/AboutIntro";
+import FeaturedProducts from "../components/FeaturedProducts";
+import InicioReel from "../components/InicioReel";
+
 export default function Home() {
   return (
-    <div className="p-5 bg-slate-900 sticky top-0 left-0">
-      <h1>BYMAGDALENA.COM</h1>
-    </div>
+    <main>
+      <InicioReel />
+      <FeaturedProducts />
+      <AboutIntro />
+    </main>
   );
 }
